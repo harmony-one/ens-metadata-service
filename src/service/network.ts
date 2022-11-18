@@ -13,6 +13,8 @@ const NETWORK = {
   ROPSTEN: 'ropsten',
   GOERLI: 'goerli',
   MAINNET: 'mainnet',
+  HARMONY: 'harmony',
+  HARMONY_S1: 'harmony-s1',
 };
 
 function getWeb3URL(api: string, network: string) {
@@ -54,6 +56,14 @@ export default function getNetwork(network: string): any {
     case NETWORK.MAINNET:
       SUBGRAPH_URL = 'https://api.thegraph.com/subgraphs/name/ensdomains/ens';
       WEB3_URL = getWeb3URL(WEB3_URL, NETWORK.MAINNET);
+      break;
+    case NETWORK.HARMONY:
+      SUBGRAPH_URL = 'https://graph.sigmoid.one/subgraphs/name/ensdomains/ens';
+      WEB3_URL = 'https://api.harmony.one';
+      break;
+    case NETWORK.HARMONY_S1:
+      SUBGRAPH_URL = 'https://graph-s1.sigmoid.one/subgraphs/name/ensdomains/ens';
+      WEB3_URL = 'https://s1.api.harmony.one';
       break;
     default:
       throw new UnsupportedNetwork(`Unknown network '${network}'`, 400);
